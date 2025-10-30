@@ -17,7 +17,7 @@ RUN pip install -r /dependencies/requirements.txt
 
 CMD mlflow server \
     --host 0.0.0.0 \
-    --port ${PORT:-7860} \
+    --port ${PORT} \
     --backend-store-uri "${BACKEND_STORE_URI}" \
     --default-artifact-root "${ARTIFACT_STORE_URI}" \
     --allowed-hosts "${MLFLOW_ALLOWED_HOSTS}" \
