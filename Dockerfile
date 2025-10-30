@@ -15,7 +15,10 @@ RUN ./aws/install
 COPY requirements.txt /dependencies/requirements.txt
 RUN pip install -r /dependencies/requirements.txt
 
-CMD mlflow server -p $PORT \
+CMD mlflow server \
     --host 0.0.0.0 \
-    --backend-store-uri $BACKEND_STORE_URI \
-    --default-artifact-root $ARTIFACT_STORE_URI
+    --port ${PORT:-7860} \
+    --backend-store-uri "${BACKEND_STORE_URI}" \
+    --default-artifact-root "${ARTIFACT_STORE_URI}" \
+    --allowed-hosts "${MLFLOW_ALLOWED_HOSTS}" \
+    --cors-allowed-origins "${MLFLOW_CORS_ALLOWED_ORIGINS}"
